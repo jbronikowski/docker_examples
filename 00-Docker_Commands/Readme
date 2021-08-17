@@ -1,10 +1,14 @@
-docker build -t studysession/simple .
-docker image ls
-docker run -it studysession/simple
+docker run -it busybox
 
+docker run -it -e TESTENV=Josh busybox
 
 docker network create mynet
 
 docker run -it --network=mynet busybox
 
 docker run -it --network=mynet --name=test1 busybox
+
+
+docker volume create josh_test
+
+docker run -it -v joshtest:/app ubuntu

@@ -1,0 +1,1 @@
+docker run -it -p 5000:5000 -v "$PWD":/app python:3.8 bash -c "pip install flask && python /app/app.py"
