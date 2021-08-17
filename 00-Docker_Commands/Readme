@@ -1,0 +1,10 @@
+docker build -t studysession/simple .
+docker image ls
+docker run -it studysession/simple
+
+
+docker network create mynet
+
+docker run -it --network=mynet busybox
+
+docker run -it --network=mynet --name=test1 busybox
