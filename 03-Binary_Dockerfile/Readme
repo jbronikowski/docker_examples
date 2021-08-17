@@ -1,0 +1,5 @@
+GOOS=linux GOARCH=amd64 go build -ldflags="-w -s" -o . hello_world.go
+
+docker build -t studysession/binary .
+
+docker run -it studysession/binary

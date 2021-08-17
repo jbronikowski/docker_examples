@@ -1,0 +1,8 @@
+docker build -t studysession/simple .
+docker run -it -p 5000:5000 studysession/simple
+
+docker history studysession/simple --no-trunc
+
+
+docker run -it -v "$PWD":/app/ -p 5000:5000 python:3.8 python /app/app.py
+

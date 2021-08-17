@@ -1,0 +1,31 @@
+version: "3.3"
+
+services:
+
+  traefik:
+    image: "traefik:v2.4"
+    container_name: "traefik"
+    command:
+      #- "--log.level=DEBUG"
+      - "--api.insecure=true"
+      - "--providers.docker=true"
+    ports:
+      - 8080:80      
+      - 8081:8080  # Traefik's web UI, enabled by --api
+    volumes:
+      # So that Traefik can listen to the Docker events
+      - /var/run/docker.sock:/var/run/docker.sock  
+  app:
+    #image: studysession/simple
+    #build: .
+    image: python:3.8
+    volumes:
+        - .:/app
+    working_dir: /app
+    command: python app.py
+    scale: 4
+    labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.backend.rule=Host(`localhost`)"
+    expose: 
+        - 5000
